@@ -195,14 +195,14 @@ function SuiviReponse({ cle, reponse, actions }: { cle: string; reponse?: Repons
     return (
       <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px]">
         <BadgeAVerifier>À confirmer</BadgeAVerifier>
-        <span className="text-mute">Pré-rempli par Bumps</span>
+        <span className="text-mute">Proposé par Bumps, à confirmer ou corriger</span>
         <BoutonConfirmer onClick={() => actions.repondre(cle, reponse.valeur, 0)} />
       </div>
     );
   }
   return (
     <p className="mt-2.5 text-[13px] text-mute">
-      {reponse.pre_rempli ? "Vérifié" : "Répondu"} par {actions.nomDe(reponse.modifie_par)} ·{" "}
+      {reponse.pre_rempli ? "Confirmé" : "Répondu"} par {actions.nomDe(reponse.modifie_par)} ·{" "}
       <Depuis iso={reponse.modifie_le} />
     </p>
   );

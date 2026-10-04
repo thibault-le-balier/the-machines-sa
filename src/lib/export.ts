@@ -17,14 +17,14 @@ export function exporterMarkdown(dossier: Dossier, etat: Etat, maintenant = new 
   const nom = (id: string | null) => etat.participants.find((p) => p.id === id)?.nom ?? "personne inconnue";
 
   const suiviLigne = (l: Suivi) => {
-    if (l.pre_rempli) return l.modifie_par ? `Vérifié par ${nom(l.modifie_par)}` : "Pré-rempli par Bumps, non vérifié";
+    if (l.pre_rempli) return l.modifie_par ? `Confirmé par ${nom(l.modifie_par)}` : "Proposé par Bumps, non confirmé";
     const auteur = nom(l.cree_par);
     return l.modifie_par && l.modifie_par !== l.cree_par ? `${auteur}, modifié par ${nom(l.modifie_par)}` : auteur;
   };
 
   const suiviReponse = (r: Reponse) =>
     r.pre_rempli && !r.modifie_par
-      ? "pré-rempli par Bumps, non confirmé"
+      ? "proposé par Bumps, non confirmé"
       : `${nom(r.modifie_par)}, ${formaterDate(r.modifie_le)}`;
 
   const texteReponse = (cle: string) => {

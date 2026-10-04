@@ -18,7 +18,7 @@ La base n'est pas exposée sur Internet : l'appli la joint par le réseau privé
 - **Accès par lien secret**, sans compte : le lien contient un jeton aléatoire de 128 bits. À la première visite, chaque personne indique son nom (et son département si elle le souhaite). Le navigateur s'en souvient ; sur un autre appareil, saisir le même nom retrouve la même personne.
 - **Enregistrement automatique**, champ par champ. Chaque écriture touche une seule réponse, une seule ligne ou un seul fichier : deux personnes qui remplissent des parties différentes ne peuvent pas s'écraser.
 - **Travail à plusieurs** : la page se rafraîchit toutes les 10 secondes pour afficher les contributions des autres, sans jamais écraser une saisie en cours. Chaque réponse indique qui l'a donnée et quand.
-- **Pré-remplissage Bumps** : les outils déjà connus et la répartition du stockage apparaissent « À vérifier » jusqu'à ce que quelqu'un clique « C'est exact » ou les corrige.
+- **Pré-remplissage Bumps** : les outils déjà connus et la répartition du stockage apparaissent « À confirmer » jusqu'à ce que quelqu'un clique « Confirmer » ou les corrige. Les départements d'un outil se cochent dans une liste (plusieurs possibles, plus un département libre).
 - **Suppressions réversibles** : bouton « Annuler » pendant quelques secondes, et en base la ligne est seulement marquée (`supprime_le`).
 - **Documents** stockés dans Postgres : 25 Mo par fichier, 300 Mo par dossier, toujours servis en téléchargement.
 - **Export** : le bouton « Exporter » télécharge toutes les réponses en Markdown (attributions comprises), prêt à relire ou à donner à Claude pour préparer la journée.

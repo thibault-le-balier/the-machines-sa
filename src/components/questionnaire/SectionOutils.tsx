@@ -4,6 +4,7 @@ import { Check, Plus } from "lucide-react";
 import { type ChangeEvent, useState } from "react";
 import { HEBERGEMENTS, PISTES_OUTILS } from "@/lib/questionnaire";
 import type { CellulesOutil, Outil } from "@/lib/types";
+import { ChoixDepartements } from "./ChoixDepartements";
 import type { Actions } from "./types";
 import { BoutonAjout, BoutonSupprimer, Cellule, EnteteSection, SuiviLigne, ZoneTexte, cx } from "./ui";
 
@@ -19,8 +20,9 @@ export function SectionOutils({ outils, actions }: { outils: Outil[]; actions: A
     <section id="outils" aria-labelledby="titre-outils">
       <EnteteSection id="titre-outils" numero="01" eyebrow="Outils" titre={<>Vos <em>outils</em></>}>
         <p>
-          Merci de compléter et de corriger la liste. Nous avons pré-rempli ce que nous savions déjà&nbsp;: si une
-          ligne est juste, un clic sur «&nbsp;C’est exact&nbsp;» suffit.
+          Nous avons commencé la liste avec ce que nous savions déjà. Les lignes marquées «&nbsp;À confirmer&nbsp;»
+          viennent de nous&nbsp;: si une ligne est juste, cliquez sur «&nbsp;Confirmer&nbsp;»&nbsp;; sinon, corrigez-la
+          directement. Ajoutez ensuite les outils qui manquent.
         </p>
       </EnteteSection>
 
@@ -93,14 +95,10 @@ function LigneOutil({ outil, actions, focus }: { outil: Outil; actions: Actions;
         />
       </Cellule>
       <Cellule libelle="Utilisé par (départements)">
-        <input
-          className="champ champ-cellule"
-          value={outil.departements}
-          onChange={modifier("departements")}
-          onBlur={actions.vider}
-          list="departements"
-          placeholder="Ex. Finance, RH"
-          maxLength={300}
+        <ChoixDepartements
+          valeur={outil.departements}
+          onChange={(v) => actions.modifierCellule("outils", outil.id, "departements", v)}
+          onFermer={actions.vider}
         />
       </Cellule>
       <Cellule libelle="À quoi il sert">

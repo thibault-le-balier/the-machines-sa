@@ -74,7 +74,7 @@ export function BoutonConfirmer({ onClick }: { onClick: () => void }) {
       onClick={onClick}
       className="inline-flex min-h-11 items-center font-medium text-green underline underline-offset-4 hover:text-green-soft lg:min-h-0"
     >
-      C’est exact
+      Confirmer
     </button>
   );
 }
@@ -94,8 +94,8 @@ export function SuiviLigne({
   if (ligne.pre_rempli && !ligne.modifie_par) {
     return (
       <div className={cx("flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px]", className)}>
-        <BadgeAVerifier>À vérifier</BadgeAVerifier>
-        <span className="text-mute">Pré-rempli par Bumps</span>
+        <BadgeAVerifier>À confirmer</BadgeAVerifier>
+        <span className="text-mute">Proposé par Bumps, à confirmer ou corriger</span>
         <BoutonConfirmer onClick={onConfirmer} />
       </div>
     );
@@ -103,7 +103,7 @@ export function SuiviLigne({
   const modifiePar =
     ligne.modifie_par && ligne.modifie_par !== ligne.cree_par ? `, modifié par ${nomDe(ligne.modifie_par)}` : "";
   const auteur = ligne.pre_rempli
-    ? `Vérifié par ${nomDe(ligne.modifie_par)}`
+    ? `Confirmé par ${nomDe(ligne.modifie_par)}`
     : `Ajouté par ${nomDe(ligne.cree_par)}${modifiePar}`;
   return (
     <p className={cx("text-[13px] text-mute", className)}>
