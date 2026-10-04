@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* Charte BUMPSLAB (DS V1) : palette, Geist, vert signature en accent uniquement. */
+:root {
+  --paper: #fafaf7;
+  --paper-cool: #f4f4f5;
+  --pure: #ffffff;
+  --charcoal: #151515;
+  --ink: #1a1a1a;
+  --ink-2: #404040;
+  --ink-3: #525252;
+  --ink-mute: #737373;
+  --rule: #d4d4d4;
+  --rule-warm: #e4e4e7;
+  --green: #1a4535;
+  --green-soft: #2a5d49;
+  --green-pale: #c5d3cc;
+  /* Hors charte, propre au formulaire : signaler un échec d'enregistrement. */
+  --alerte: #9a3412;
+  --alerte-pale: #fdf0e6;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-cool: var(--paper-cool);
+  --color-pure: var(--pure);
+  --color-charcoal: var(--charcoal);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-mute: var(--ink-mute);
+  --color-rule: var(--rule);
+  --color-rule-warm: var(--rule-warm);
+  --color-green: var(--green);
+  --color-green-soft: var(--green-soft);
+  --color-green-pale: var(--green-pale);
+  --color-alerte: var(--alerte);
+  --color-alerte-pale: var(--alerte-pale);
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  background: var(--paper);
+  scroll-padding-top: 88px;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 17px;
+  }
+}
+
+/* Geste de marque : surlignage vert hairline dans les titres. */
+em {
+  font-style: normal;
+}
+h1 em,
+h2 em {
+  text-decoration: underline;
+  text-decoration-color: var(--green);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--green-pale);
+}
+
+@layer components {
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .titre-1 {
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+  }
+  .titre-2 {
+    font-size: clamp(28px, 3.2vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  .chapo {
+    font-size: clamp(17px, 1.4vw, 19px);
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+
+  /* Champ de saisie : bordure visible sur mobile, discrète dans les tableaux sur desktop. */
+  .champ {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--pure);
+    padding: 10px 12px;
+    font-size: 16px;
+    color: var(--ink);
+    transition:
+      border-color 200ms,
+      background-color 200ms;
+  }
+  .champ::placeholder {
+    color: #a3a3a3;
+  }
+  .champ:hover {
+    border-color: var(--ink-mute);
+  }
+  .champ:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgb(26 69 53 / 0.12);
+  }
+  @media (min-width: 1024px) {
+    .champ-cellule {
+      min-height: 44px;
+      border-color: transparent;
+      background: transparent;
+    }
+    .champ-cellule:hover {
+      border-color: var(--rule);
+      background: var(--pure);
+    }
+    .champ-cellule:focus {
+      background: var(--pure);
+    }
+  }
+}
+
+dialog::backdrop {
+  background: rgb(11 26 21 / 0.45);
+}
